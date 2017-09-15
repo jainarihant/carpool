@@ -98,7 +98,7 @@ body {
       opacity: 0.9;
   }
   .navbar li a, .navbar .navbar-brand { 
-      color: #d5d5d5 !important;
+      color: ##d88b8b !important;
   }
   .navbar-nav li a:hover {
       color: #fff !important;
