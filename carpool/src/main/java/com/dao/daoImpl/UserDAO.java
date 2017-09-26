@@ -195,36 +195,15 @@ public class UserDAO implements UserInterface {
 		return book;
 	}
 	
-	/*
-	public List<User> getPassengerDriver() {
+
+	public List<String> getPassengerDriver() {
 		List<User> user_data;
+		List<String> arr;
 		try{
 			session.getSessionFactory();
 			session.beginTransaction();
-			Query query;
-			//Query query = session.createQuery("from User WHERE EXISTS (select UserID from Passengerdetail) AND EXISTS (select userID from Driverdetail)");
-			List<User> user=null;
-			user =  session.createQuery("Select UserID from Passengerdetail").list();
-			Iterator it = user.iterator();
-			List<String> list_userid = new ArrayList<String>();
-			while(it.hasNext()){
-				User newuser = new User();
-				newuser = (User) it.next();
-				String user_id = newuser.getUserID();
-				list_userid.add(user_id);
-			}
-			user = session.createQuery("Select UserID from Driverdetail where UserID in ("+list_userid+")").list();
-			Iterator it1 = user.iterator();
-			List<String> list_userid1 = new ArrayList<String>();
-			while(it1.hasNext()){
-				User newuser = new User();
-				newuser = (User) it1.next();
-				String user_id = newuser.getUserID();
-				list_userid1.add(user_id);
-			}
-			query = session.createQuery("from User WHERE UserID in ("+list_userid1+")");
-			user_data = query.list();
-			
+			Query query = session.createSQLQuery("select userid from passengerdetails where userid in(select userid from driverdetails)");
+			arr = query.list();	
 			session.getTransaction().commit();
 			session.close();
 			
@@ -232,9 +211,8 @@ public class UserDAO implements UserInterface {
 				//LOGGER.debug(e.getMessage());
 				throw new RuntimeException(e.getMessage());
 			}
-		return user_data;
+		return arr;
 	}
-	*/
 	
 	@Override
 	public void updateProfile(User user, String userID){
@@ -272,6 +250,21 @@ public class UserDAO implements UserInterface {
 				//session.flush();
 				session.close();
 			}
+	}
+	@Override
+	public boolean forgotPasswd(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void updateProfile(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public User getUserDetails(String uname) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
