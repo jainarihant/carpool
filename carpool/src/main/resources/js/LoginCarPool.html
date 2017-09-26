@@ -1,0 +1,35 @@
+<html>
+<body ng-app="myApp">
+<script src="resources/angular.min.js"></script>
+<script src="resources/app.js"></script>
+<script src="resources/user_controller.js"></script>
+<div ng-controller="UserController as ctrl">
+<div>
+	<div><span>Login Form</span></div>
+		<div>
+			<form ng-submit="ctrl.submit()" name="myForm">
+			<p>Email:<br>
+				<input type="email" name="email" ng-model="email" placeholder="Enter your email" required>
+				<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+					<span ng-show="myForm.email.$error.required">Email is required.</span>
+					<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+				</span>
+			</p>
+			
+					
+			
+			<p>Password:<br>
+			<input type="text" ng-model="password" name="password" placeholder="Type password" required ng-maxlength="8"/>
+				<span ng-show="myForm.$dirty">
+					<span ng-show="myForm.password.$error.required.$untouched" style="color:red">This is a required field.</span>
+					<span ng-show="myForm.password.$error.maxlength" style="color:red">Minimum length required is 8.</span>
+				</span>
+
+			<p>
+				<input type="submit"
+				ng-disabled="myForm.password.$dirty && myForm.password.$invalid ||  
+				myForm.email.$dirty && myForm.email.$invalid">
+			</p>
+</form>
+</body>
+</html>
