@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Carpool">
+		
+		<link rel="icon" href="">
+		
+		
+		<!-- BootStrap CSS -->
+		<link href="css/bootstrap.css" rel="StyleSheet" type="text/css">
+		
+		<!-- BootStrap Table CSS -->
+		<link href="css/bootstrap-table.css" rel="StyleSheet" type="text/css">
+		
+		<!-- BootStrap Validator CSS -->
+		<link href="css/bootstrapValidator.css" rel="StyleSheet" type="text/css">
+		
+		<!-- BootStrap Date Picker CSS -->
+		<link href="css/bootstrap-datepicker/bootstrap-datepicker3.css" rel="StyleSheet" type="text/css">
+		
+		<!-- Custom CSS -->
+		<link href="css/style.css" rel="StyleSheet" type="text/css">
+		
+		<!-- FontAwesome CSS -->
+		<link href="css/font-awesome.css" rel="StyleSheet" type="text/css">
+		
+		<!-- Google Fonts for Material IO -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="StyleSheet">
+		
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!--<link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+	
+	
+
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  
+		<![endif]-->
+		
+		
+	</head>
+	<!-- body begins -->
+	<body>
+		<!-- header begins -->
+		<header>
+			
+				<div class="col-md-12 header-bg" style="z-index:16;">
+					<div class="container header-brand"> 
+						<nav class="navbar navbar-toggleable-md fixed-top" style="background-color: #eee !important; color:#000 !important;">
+							<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<a class="navbar-brand" href="#" style="color:#000; font-variant:small-caps; font-weight:600;">Carpool</a>
+							<div class="collapse navbar-collapse" id="navbarCollapse">
+								<ul class="navbar-nav" style="margin-left:auto; font-size:24px;">
+									<li class="nav-item active">
+										<a class="nav-link" href="login.html" style="color:#000;" title="Login / Sign Up"><i class="material-icons" style="font-size:36px;">person_pin</i><span class="align-baseline" style="font-size:14px; vertical-align:middle;">FirstName LastName</span><span class="hidden-md-up" style="font-size:16px;">&nbsp;Login / Sign Up</span> <span class="sr-only">(current)</span></a>
+									</li>
+									
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+				
+		
+		</header>
+		<!-- header ends -->
+		
+		<!--<div class="col-md-12" style="background-color:#E8E8E8;">-->
+		
+			<div id="homeCarousel" class="container-fluid carousel slide hidden-xs-down" data-ride="carousel" width="100%" style="box-shadow:2px 1px 1px 2px #ccc;">
+				<ol class="carousel-indicators">
+					<li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#homeCarousel" data-slide-to="1"></li>
+					<li data-target="#homeCarousel" data-slide-to="2"></li>
+				</ol>
+				
+				
+			</div>
+		
+		<div class="col-md-12 body-wrap">
+			<div class="container" id = "travel">
+				<form action="" class="form-inline" style="font-size:12px;">
+					<div class="col-auto" >
+						<label class="sr-only" for="busFrom">From</label>
+						<div class="input-group mb-2 mb-sm-0 " >
+							<div class="input-group-addon form-control-sm"><i class="material-icons">person_pin_circle</i></div>
+							<input type="text" class="form-control form-control-md" id="busFrom" name="busFrom" placeholder="From">
+						</div>
+					</div>
+					<span class="mr-sm-2"></span>
+					<div class="col-auto" >
+						<label class="sr-only mr-sm-2" for="busTo">To</label>
+						<div class="input-group mb-2 mb-sm-0" >
+							<div class="input-group-addon form-control-sm"><i class="material-icons">person_pin_circle</i></div>
+							<input type="text" class="form-control form-control-md" id="busTo" name="busTo" placeholder="To">
+						</div>
+					</div>	
+					<span class="mr-sm-2"></span>
+					<div class="col-auto">
+						<div class="input-group mb-2 mb-sm-0 date_picker">
+							<input type="text" class="form-control form-control-md" value="">
+							<div class="input-group-addon form-control-md date">
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+					<span class="mr-sm-2"></span>
+					<div class="col-auto">
+						<div class="input-group mb-2 mb-sm-0 date_picker">
+							<input type="text" class="form-control form-control-md" value="" placeholder="Return (Optional)">
+							<div class="input-group-addon form-control-md date">
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+					<br/>
+					
+
+					<span class="mr-sm-2"><br/></span>
+					<span class="mr-sm-2"><br/></span>
+					
+					<div class="mx-auto" style="margin-top:50px;">
+						<div class="input-group mb-2 mb-sm-0 date_picker">
+							<button type="submit" class="btn btn-default btn-md" id="searchFormSubmit" name="searchFormSubmit" value="Search" style="border-radius:0px; box-shadow:1px 2px 2px 1px #ccc;">Book Seat&nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+			
+		
+		<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p> Copyright @ CarpoolNetworkTeam Project <a href="carpoolnet.com" data-toggle="tooltip" title="Visit CarNet">carpoolnet.com</a></p> 
+</footer>
+		
+		<!-- Placed at the end of the document so the pages load faster -->
+		<!-- jQuery library -->
+		
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!--<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>-->
+		
+		<!-- Popper -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		
+		<!-- Bootstrap Validator JavaScript -->
+		<script src="js/bootstrapValidator.js"></script>
+		
+		<!-- Bootstrap Table JavaScript -->
+		<script src="js/bootstrap-table.js"></script>
+    	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script src="js/bootstrap.js"></script>
+		
+		<!-- Date Picker -->
+		<script src="js/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+	
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="js/ie10-viewport-bug-workaround.js"></script>
+	
+		
+		
+		 <script type="text/javascript">
+			 $(function(){
+			$('.date_picker input').datepicker({
+			   format: "dd/mm/yyyy",
+			   todayBtn: "linked",
+			   language: "de"
+			});
+		});
+		</script>
+		
+		<script>
+			 $(document).ready(function() {
+				$('#travel').bootstrapValidator({
+					message: 'This value is not valid',
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						busFrom: {
+							message: 'Source',
+							validators: {
+								notEmpty: {
+									message: 'Source City Required'
+								},
+							regexp:{
+									regexp: /^[a-zA-Z\s]+$/i,
+									message: 'Only Characters'
+								},	
+							}
+						},
+						busTo: {
+							message: 'Destination',
+							validators: {
+								notEmpty: {
+									message: 'Destination City Required'
+								},
+								regexp:{
+									regexp: /^[a-zA-Z\s]+$/i,
+									message: 'Only Characters'
+								},
+														
+							}
+						},
+						
+					}
+					
+				});
+			});
+		</script>
+		
+		
+		
+	</body>
+	<!-- body ends -->
+</html>
