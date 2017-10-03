@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CarPool</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  #map{
+  height:200%;
+  width:90%;
+  position:absolute;
+  margin-top:-10%;
+  
+  
+  
+  }
+  
+  </style>
+  <style>
+   		<%@include file="css/custom.css" %>
+   </style>
+  
+  	<script>
+		<%@include file="js/angular/angular.min.js" %>
+		<%@include file="js/angular/app.js" %>
+		<%@include file="js/angular/login_controller.js" %>
+  	</script>
+  
+  <link rel="stylesheet" href="css/custom.css">
+  
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!-- Navigation Bar section -->
+<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+				<a class="navbar-brand" href="#">CarPool Network</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="Profile.html">HOME</a></li>
+				<li><a href="#logout">Logout</a></li>
+			  </ul>
+			</div>
+		</div>
+	</nav>
+<body>
+<div class="container-fluid" >
+<div class="col-sm-6">
+<br/><br/><br/>
+<h2>Search TRIP</h2>
+	<form action="findRide" method="POST">
+		<div class="form-group">
+		  <label for="startpoint">From:</label>
+		  <input type="text" class="form-control" style="width:400px" id="startpoint" placeholder="Enter the start point" name="from">
+		</div>
+		<div class="form-group">
+		  <label for="endpoint">To:</label>
+		  <input type="endpoint" class="form-control" style="width:400px" id="endpoint" placeholder="Enter the end point" name="to">
+		</div>
+		
+		<div class="form-group">
+		  <label for="datetime">Date Time:</label>
+		  <input type="datetime-local" class="form-control" style="width:400px" id="datetime" placeholder="yyyy-mm-dd" name="date">
+		</div>
+			<div class="form-group">
+		  <label for="frequency">Categories : </label>
+		  <select name="type1">
+			<option value="select" name="regular">Regular </option>
+			<option value="one-time" name="frequent">Frequent</option>
+		</select>
+		</div>
+		<div class="form-group">
+		<button type="button" class="btn btn-default btn-md" onclick="putMarkers()">Show On Maps</button>
+		</div>
+		
+		
+		<div class="container">
+		<input type="submit" class="btn btn-default btn-md" value="Search by Source" name="type"/>
+		<input type="submit" class="btn btn-default btn-md" value="Search by Destination" name="type"/>
+		
+		<input type="reset" class="btn btn-default btn-md"  value="Cancel"/>
+			
+		</div>
+		
+	</form>
+</div>
+
+<div id="modal1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Confirm Booking?</h4>
+			</div>
+		<div class="modal-body">
+			<a href="Profile.html" style="margin-left:70px;" class="btn btn-default">OK</a>
+			<button type="button" style="margin-left:120px;" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+		</div>
+		<div class="modal-footer">
+		</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-sm-6"><br><br>
+<h3 style="text-align: center;"> GOOGLE MAPS</h3><br><br>
+<div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        // Constructor creates a new map - only center and zoom are required.
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(12.973922, 77.569183);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: latlng,
+          zoom: 13
+        });
+      }
+     function putMarkers(){
+     	codeAddress();
+     	codeDestination();
+     	codeMeeting();
+     }
+    function codeAddress() {
+    var address = document.getElementById('startpoint').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  function codeMeeting() {
+    var address = document.getElementById('meetingpoints').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+   function codeDestination() {
+    var address = document.getElementById('endpoint').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+    </script>
+
+ <!-- Set Div As your requirement -->
+</div>
+
+</div>
+
+
+
+
+<script async defer
+        src=
+        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyCjOCV-6ZOrWQgYCh_hSYsANT2hcDFkZME&v=3&callback=initMap">
+
+    </script>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p> Copyright @ CarpoolNetworkTeam Project <a href="carpoolnet.com" data-toggle="tooltip" title="Visit CarNet">carpoolnet.com</a></p> 
+</footer>
+</body>
+</html>

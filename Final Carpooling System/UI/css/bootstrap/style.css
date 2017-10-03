@@ -1,0 +1,93 @@
+.header-bg{
+	background-color:#eee; 
+	box-shadow:2px 1px 1px 2px #ccc;
+}
+
+.header-brand{
+	background-color:transparent; 
+	height:60px;
+}
+
+.foot-list{
+	padding-top:24px;
+	padding-bottom:24px;
+}
+
+.foot-listing{
+	list-style:none;
+	font-size:13px;
+	padding:3px; 
+	text-align:justify;
+}
+
+.foot-listing-social{
+	list-style:none;
+	font-size:36px;
+	padding:10px;
+	
+}
+
+.foot-listing-social-link {
+	color:#ccc;
+}
+
+.foot-listing-social-link :visited{
+	color:#ccc;
+}
+
+.foot-listing-social-link :active{
+	color:#ccc;
+}
+
+.foot-listing-social-link :hover{
+	color:#fff;
+}
+
+.footer-bg{
+	background-color:#303030; 
+	height:50px;
+}
+
+.footer-content{
+	background-color:#303030; 
+	height:50px;
+}
+
+.footer-copyright{
+	color:#fff; 
+	font-size:12px;
+	line-height:48px;
+}
+
+.footer-menu{
+	color:#ccc; 
+	font-size:12px;
+	line-height:48px;
+}
+
+.foot-link, .foot-link:active, :visited{
+	color:#ccc; 
+	text-decoration:none;
+}
+
+.foot-link:hover{
+	color:#fff;
+	text-decoration:none;
+}
+
+.body-wrap{
+	min-height:380px;
+	padding-top:40px;
+	padding-bottom:40px;
+}
+
+.list-group-item:first-child {
+	color:#495057;
+}
+
+.list-group-item.active{
+	background-color: #A8A8A8 !important;
+	border-color:#A8A8A8 !important;
+	color:#fff;
+}
+

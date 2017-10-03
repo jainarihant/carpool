@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Carpool</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  
+  <style type="text/css">
+ 
+	</style>
+	<script>
+  function edit_profile(){
+					document.getElementById("name").readOnly = false;
+					document.getElementById("email").readOnly = false;
+					document.getElementById("contact").readOnly = false;
+					document.getElementById("gender").readOnly = false;
+					document.getElementById("update_profile").disabled = false;
+					}
+					
+					
+	function close_profile(){
+					document.getElementById("name").readOnly = true;
+					document.getElementById("email").readOnly = true;
+					document.getElementById("contact").readOnly = true;
+					document.getElementById("gender").readOnly = true;
+					document.getElementById("update_profile").disabled = true;
+					}
+	</script>
+</head>
+
+<body>
+
+   
+<!-- Navigation Bar section -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">CarPool Network</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="#band">Search For Ride <span class="glyphicon glyphicon-search"></a></li>
+        <li><a href="#tour"> Post a Ride</a></li>
+        <li><a href="#contact">Register</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Help ?</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+	<div class="content">
+		<div class="container">
+			<div class="row" id="profile">
+				<h3 class="headline"> Profile</h3>   
+							<hr/>
+					<div class="col-lg-9 col-sm-12">
+						<form method="GET"  width: 550px;margin : 30px 0px 0px 150px;">
+						
+						
+							<div class="form-group row">
+								<label for="text">Customer Name:</label>
+								<input type="text" class="form-control" id="name" value="Charmi Valecha" readonly />
+							</div>
+							
+							<div class="form-group row">
+								<label for="text">Email ID:</label>
+								<input type="email" class="form-control" id="email" value="charmivalecha22@gmail.com" readonly />
+							</div>
+							
+							<div class="form-group row">
+								<label for="text">Contact:</label>
+								<input type="text" class="form-control" id="contact" value="8879075545" readonly />
+							</div>
+							
+								<button type="submit" class="btn btn-default" disabled onclick="close_profile()" id="update_profile">Save</button>
+								<button type="button" class="btn btn-default" onclick="edit_profile()">Edit Profile</button>
+								
+						</form>
+					</div>
+					<div class="col-sm-3" class="btn-group">
+						<div class="col-lg-12 col-sm-12">
+						<button type="button" class="btn btn-default btn-lg btn-block text-lg-center custom" data-toggle="modal" data-target="#modal1" id="driver" name="driver" value="Driver" style="border-radius:0px;">Post a Trip</button>
+						<br/><br/>
+						<button type="button" class="btn btn-default btn-lg btn-block text-lg-center custom" data-toggle="modal" data-target="#modal2" id="passenger" name="passenger" value="Passenger" style="border-radius:0px;">Search a trip</button>
+						</div>	
+					</div>
+					</div>
+					</div>
+				
+				
+    
+
+<div class="modal fade" id="modal1" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+        <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Driver Details</h4>
+        </div>
+        <div class="modal-body">
+
+			<form class="form-horizontal">
+				<div class="form-group row">
+					<label for="control-label col-sm-2">License Number:</label>
+					<input type="text" class="col-sm-8" id="Licenno" placeholder="Enter the License Number" name="Licenno">
+				</div>
+				<div class="form-group row">
+					<label for="control-label col-sm-2">License Issue Date:</label>
+					<input type="date" class="col-sm-6" id="Lic_issue" placeholder="Enter the License Issue Date" name="Lic_issue">
+				</div>
+				<div class="form-group row">
+					<label for="control-label col-sm-2">License Expiry Date:</label>
+					<input type="date" class="col-sm-6" id="Lic_expiry" placeholder="Enter the License Expiry Date" name="Lic_expiry">
+				</div>
+			</form>
+		</div>
+			<div class="modal-footer">
+			<a href="CreateTrip.html" class="btn btn-default" >Submit</a>
+			</div>
+		</div>
+    </div>
+</div>
+
+
+	<div class="modal fade" id="modal2" tabindex="-1">
+	<div class="modal-dialog">
+	<div class="modal-content">
+        <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal2">&times;</button>
+			<h4 class="modal-title">Passenger Details</h4>
+        </div>
+        <div class="modal-body">
+        <form class="form-horizontal">
+			<div class="form-group row">
+				<label for="control-label col-sm-2">ID Proof Type:</label>
+				<input type="text" class="col-sm-8" id="Licenno" placeholder="Enter the License Number" name="Licenno">
+			</div>
+			<div class="form-group row">
+				<label for="control-label col-sm-2">ID Proof Number:</label>
+				<input type="text" class="col-sm-6" id="Lic_issue" placeholder="Enter the License Issue Date" name="Lic_issue">
+			</div>
+			
+		</form> 
+      
+		</div>
+        <div class="modal-footer">
+			<a href="SearchTrip.html" class="btn btn-default" >Submit</a>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+					
+
+<footer class="text-center footer">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p> Copyright @ CarpoolNetworkTeam Project <a href="carpoolnet.com" data-toggle="tooltip" title="Visit CarNet">carpoolnet.com</a></p> 
+</footer>  
+</body>
+</html>

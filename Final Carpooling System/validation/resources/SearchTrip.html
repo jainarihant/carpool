@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Carpool</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/custom.css">
+		<link href="css/bootstrap-table.css" rel="StyleSheet" type="text/css">
+		<link href="css/bootstrap-datepicker/bootstrap-datepicker3.css" rel="StyleSheet" type="text/css">
+		<link href="css/style.css" rel="StyleSheet" type="text/css">
+		<link href="css/bootstrap.css" rel="StyleSheet" type="text/css">
+		<link href="css/font-awesome.css" rel="StyleSheet" type="text/css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="StyleSheet">
+</head>
+
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!-- Navigation Bar section -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">CarPool Network</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="#band">Search For Ride <span class="glyphicon glyphicon-search"></a></li>
+        <li><a href="#tour"> Post a Ride</a></li>
+        <li><a href="#contact">Register</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Help ?</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid" style="margin-top: 100px">
+	<div class="col-sm-12">
+		<div class="col-sm-6">
+			<form action="" class="form-inline" style="font-size:12px;" name="SearchTripForm">
+				<div class="col-auto" style="margin-top:80px" >
+					<label class="sr-only" for="busFrom">From</label>
+						<div class="input-group mb-2 mb-sm-0 " >
+							<div class="input-group-addon form-control-sm" style=""><i class="material-icons">person_pin_circle</i></div>
+							<input type="text" class="form-control form-control-md" id="busFrom" name="busFrom" placeholder="From" 
+							ng-model="busFrom"
+							ng-pattern = "/^[A-Za-z]+$/" required />
+							<div>
+							<span ng-show = "SearchTripForm.busFrom.$touched && SearchTripForm.busFrom.$error.required">
+							Please enter your valid location
+							</span>
+							</div>
+						</div>
+				</div>
+					<span class="mr-sm-2"></span>
+					<div class="col-auto" style="margin-top:30px" >
+						<label class="sr-only mr-sm-2" for="busTo">To</label>
+						<div class="input-group mb-2 mb-sm-0" id="f2">
+							<div class="input-group-addon form-control-sm" style=""><i class="material-icons">person_pin_circle</i></div>
+							<input type="text" class="form-control form-control-md" id="busTo" name="busTo" placeholder="To"
+							ng-model="busTo"
+							ng-pattern="/^[A-Za-z]+$/" required />
+							<div>
+							<span ng-show = "SearchTripForm.busTo.$touched && SearchTripForm.busTo.$error.required">
+							Please enter your valid location
+							</span>
+							</div>
+						</div>
+					</div>	
+					
+					<span class="mr-sm-2"></span>
+					<div class="col-auto" style="margin-top: 20px">
+						<div class="input-group mb-2 mb-sm-0 date_picker">
+							<input type="text" class="form-control form-control-md" name="uDate"value="">
+							<span class="input-group-addon">
+                        		<span class="glyphicon glyphicon-calendar fa fa-"></span>
+                    		</span>
+						</div>
+					</div>
+					
+					<span class="mr-sm-2"><br/></span>
+					<span class="mr-sm-2"><br/></span>
+
+
+				
+					<div class="mx-auto" style="">
+						<div>
+
+
+	<!--source -->		
+ 
+  <!-- Trigger the modal with a button -->
+  <div>
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Trip Detail</h4>
+        </div>
+        <div class="modal-body">
+          
+        <table class="table table-bordered">
+    <thead>
+      <tr>
+      	<th></th>
+        <th>Tid</th>
+        <th>Source</th>
+        <th>Destination</th>
+         <th>Date Time</th>
+          <th>Expected Time</th>
+          <th>Frequency</th>
+          <th>No.ofseats</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      	<td><input type="radio" name="radioGroup" checked></td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+        <td>10</td>
+        <td>10:30</td>
+        <td>regular</td>
+        <td>3</td>
+      </tr>
+      <tr>
+     	<td><input type="radio" name="radioGroup" checked></td>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+        <td>20</td>
+        <td>11:30</td>
+        <td>Frequent</td>
+        <td>1</td>
+      </tr>
+      <tr>
+     	<td><input type="radio" name="radioGroup" checked></td>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td>30</td>
+        <td>3:30</td>
+        <td>Regular</td>
+        <td>10</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" >Submit</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+	 <!-- Trigger the modal with a button -->
+  
+<!-- destination -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Trip Detail</h4>
+        </div>
+        <div class="modal-body">
+         
+        <table class="table table-bordered">
+     <thead>
+      <tr>
+      	<th></th>
+        <th>Tid</th>
+        <th>Source</th>
+        <th>Destination</th>
+         <th>DT</th>
+          <th>ETime</th>
+           <th>Frequency</th>
+          <th>No.ofseats</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+        <td><input type="radio" name="radioGroup" checked></td>
+        <td>Joey</td>
+        <td>Trib</td>
+        <td>joe@example.com</td>
+        <td>9</td>
+        <td>9:30</td>
+        <td>Frequent</td>
+        <td>9</td>
+      </tr>
+      <tr>
+
+        <td><input type="radio" name="radioGroup" checked></td>
+        <td>Monica</td>
+        <td>Geller</td>
+        <td>mon@example.com</td>
+        <td>19</td>
+        <td>20:30</td>
+        <td>Frequent</td>
+        <td>3</td>
+      </tr>
+      <tr>
+
+        <td><input type="radio" name="radioGroup" checked></td>
+        <td>Rachel</td>
+        <td>Green</td>
+        <td>rach@example.com</td>
+        <td>29</td>
+        <td>1:30</td>
+        <td>Regular</td>
+        <td>3</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="">Submit</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-8">
+
+    <div class="col-sm-4">
+    	<div class="btn-group" style="margin-top: 20px;">
+      <a class="btn dropdown-toggle  btn btn-info btn-sm" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Random</a></li>
+        <li><a href="#">Frequent</a></li>
+       
+   	 </div>
+    </div>
+    
+    <div class="col-sm-4">
+    	<button style="margin-top:20px;" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Search by source</button>
+    </div>
+
+    <div class="col-sm-4">
+    	<button style="margin-top:20px;" type="button" class="  btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1">Search by destination</button>
+    </div>
+
+
+
+<div style="margin-left:150px;">
+
+
+<!-- Trigger the modal with a button -->
+<button style="margin-top:20px;" type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">Book Seat</button>
+
+<!-- Modal -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirm Booking?</h4>
+      </div>
+      <div class="modal-body">
+        
+ <button type="button" style="margin-left:70px;" class="btn btn-default" data-dismiss="modal">OK</button>
+
+ <button type="button" style="margin-left:120px;" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+
+      </div>
+      <div class="modal-footer">
+       
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+	    </div>
+</div>
+						</div>
+					</div>
+			</form >
+		</div>
+
+</div>
+
+<!-- GoogleMapSection -->
+
+<div class="col-sm-6">
+			<div id="googleMap" style=""></div>
+		</div>
+
+	</div>	
+</div>		
+<script>
+function myMap() {
+var myCenter = new google.maps.LatLng(23.34,-34.456);
+var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+var marker = new google.maps.Marker({position:myCenter});
+marker.setMap(map);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+
+</div>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p> Copyright @ CarpoolNetworkTeam Project <a href="carpoolnet.com" data-toggle="tooltip" title="Visit CarNet">carpoolnet.com</a></p> 
+</footer>
+
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!--<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>-->
+		
+		<!-- Popper -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		
+		<!-- Bootstrap Validator JavaScript -->
+		<script src="js/bootstrapValidator.js"></script>
+		
+		<!-- Bootstrap Table JavaScript -->
+		<script src="js/bootstrap-table.js"></script>
+    	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script src="js/bootstrap.js"></script>
+		
+		<!-- Date Picker -->
+		<script src="js/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+	
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+
+	
+				
+		 <script type="text/javascript">
+			 $(function(){
+			$('.date_picker input').datepicker({
+			   format: "dd/mm/yyyy",
+			   todayBtn: "linked",
+			   language: "de"
+			});
+		});
+		</script>
+		
+		<script>
+			 $(document).ready(function() {
+				$('#bustravel').bootstrapValidator({
+					message: 'This value is not valid',
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						busFrom: {
+							message: 'Source',
+							validators: {
+								notEmpty: {
+									message: 'Source City Required'
+								},
+							regexp:{
+									regexp: /^[a-zA-Z\s]+$/i,
+									message: 'Only Characters'
+								},	
+							}
+						},
+						busTo: {
+							message: 'Destination',
+							validators: {
+								notEmpty: {
+									message: 'Destination City Required'
+								},
+								regexp:{
+									regexp: /^[a-zA-Z\s]+$/i,
+									message: 'Only Characters'
+								},
+														
+							}
+						},
+						
+					}
+					
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(".dropdown-menu li a").click(function(){
+  var selText = $(this).text();
+  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+});
+		</script>
+		
+		
+
+</body>
+</html>
+
+

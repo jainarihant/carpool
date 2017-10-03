@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head><h>Trip Details Validation</h>></head>
+<script type="text/javascript">
+function Validate()
+{
+var x=document.getElementById("SpotsAvailable").value;
+var sp=document.getElementById("Startpoint").value;
+var y=document.getElementById("Frequency").value;
+var d=document.getElementById("DateTime").value;
+
+var d1=document.getElementById("Enddate").value;
+
+if(x>10||x<0)
+{
+	//document.getElementById("id1").innerHTML="INVALID INPUT";
+	alert("INVALID INPUT");
+	return false;
+}
+if(sp.match(/^[A-Za-z]+$/));
+/*{
+	//document.getElementById("id2").innerHTML="Invalid Startpoint";
+	
+	return false;
+}*/
+if(y<0)
+{
+	//document.getElementById("id6").innerHTML="INVALID INPUT";
+		alert("INVALID frequency");
+
+	return false;
+}
+
+if(d>d1)
+{
+	alert("Start date cant be greater than end date");
+}	
+
+
+}
+/*function DateValidate()
+{
+var d=new Date();
+d=document.getElementById("DateTime");
+var year;
+var month = date.getMonth() + 1, // months are zero indexed
+var day = date.getDate(),
+var hour = date.getHours(),
+var minute = date.getMinutes(),
+var second = date.getSeconds(),
+var hourFormatted = hour % 12 || 12, // hour returned in 24 hour format
+var minuteFormatted = minute < 10 ? "0" + minute : minute,
+var morning = hour < 12 ? "am" : "pm";	
+}*/
+</script>
+<html>
+<form>
+Enter the no of spots:
+<input id="SpotsAvailable" type="number" name="SpotsAvailable" placeholder="0"><br>
+<p id="id1"></p>
+Enter the StartPoint:
+<input id="Startpoint" type="text" name="Startpoint"><br>
+<p id="id2"></p>
+Enter the EndPoint:
+<input id="Endpoint" type="text" name="Endpoint"><br>
+Enter the MeetingPoint
+<input id="MeetingPoints" type="text" name="MeetingPoints"><br>
+Trip Start date and time:
+<input id="DateTime" type="datetime-local" name="DateTime"><br>
+Enter the frequency
+<input id="Frequency" type="number" name="Frequency" placeholder="0"><br>
+<p id="id6"></p>
+Enter the End Date
+<input id="Enddate" type="datetime-local" name="Enddate"><br>
+<button type="button" onclick="Validate()">Submit</button>
+
+</form>
+</html>
+

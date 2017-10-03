@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>CarPool</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+			<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<style type="text/css">
+				#map{
+				height:300%;
+				width:100%;
+				position:absolute;
+				}
+				  
+			</style>
+			
+		<link rel="stylesheet" href="css/custom.css">
+	</head>
+	
+	<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!-- Navigation Bar section -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+				<a class="navbar-brand" href="#">CarPool Network</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="Profile.html">HOME</a></li>
+				<li><a href="#logout">Logout</a></li>
+			  </ul>
+			</div>
+		</div>
+	</nav>
+<div class="container-fluid col-sm-12" style="margin-top:30px">
+<div class="col-sm-6">
+
+<h1>CREATE TRIP</h1>
+<div class="col-sm-12">
+<div class="col-sm-6">
+	<form action="">
+		<div class="form-group">
+			<button type="button" class="btn btn-info btn-md" style="width:250px" data-toggle="modal" data-target="#modal1">My Cars</button>
+
+		  <label for="startpoint">Start Point:</label>
+		  <input type="text" class="form-control" style="width:250px" id="startpoint" placeholder="Enter the start point" name="startpoint">
+		</div>
+		<div class="form-group">
+		
+			<label for="endpoint">End Point:</label>
+			<input type="text" class="form-control" style="width:250px" id="endpoint" placeholder="Enter the end point" name="endpoint">
+
+		</div>
+		</div>
+		<div class="col-sm-6">
+			
+		<div class="form-group">
+				<button type="button" class="btn btn-info btn-md" style="width:250px" data-toggle="modal" data-target="#modal2">Add Cars</button>
+
+			<label for="meetingpoints">Meeting Point:</label>
+			<input type="text" class="form-control" style="width:250px" id="meetingpoints" placeholder="Enter the meeting points" name="meetingpoints">
+		</div>
+		
+		<button type="button"  class="btn btn-info btn-sm" style="margin-right:1000" onclick="putMarkers()" >Show On Maps</button>
+		</div>
+		</div>
+		
+		<div class="col-sm-12">
+		<div class="col-sm-6">
+		
+		<div class="form-group">
+		  <label for="datetime">Date Time:</label>
+		  <input type="text" class="form-control" style="width:250px" id="datetime"  placeholder="yyyy-mm-dd  hh:mm:ss" name="datetime">
+		</div>
+		<div class="form-group">
+		  <label for="frequency">Frequency : </label>
+		  <select>
+			<option value="select"> Select ... </option>
+			<option value="one-time">One time</option>
+			<option value="daily">Daily</option>
+			<option value="weekly">Weekly</option>
+		</select>
+		  <!--<input type="number" class="form-control" id="frequency" placeholder="Enter the frequency of trips" name="frequency">-->
+		</div>
+		<div class="form-group">
+		  <label for="date">End Date:</label>
+		  <input type="text" class="form-control" style="width:250px" placeholder="yyyy-mm-dd" id="enddate"  name="enddate">
+		</div>
+		<div class="form-group">
+		  <label for="spotsavailable">Spots Available:</label>
+		  <input type="number" class="form-control" style="width:250px" id="spotsavailable" placeholder="Enter the spots available"  name="spotsavailable">
+		</div>
+		
+		<div class="checkbox">
+			
+			<label for="checkbox">Preferences:</label>
+			<div class="col-sm-12">
+			<div class="col-sm-7">
+			<label><input type="checkbox" name="remember" > AC/Non-AC</label><br/>
+			<label><input type="checkbox" name="remember"> Smoking</label><br/>
+			<label><input type="checkbox" name="remember"> Luggage</label>
+			</div>
+			</div>
+		</div>
+
+		<div class="container">
+	  
+	 
+		
+		<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#modal3" name="mydate">Post Ride</button>
+		<button type="button" class="btn btn-info btn-md" >Cancel</button>
+			
+		</div>
+		</div>
+		</div>
+	</form>
+</div>
+
+
+<div class="col-sm-6"><br><br>
+<h3 style="text-align: center;"> GOOGLE MAPS</h3><br><br>
+<div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        // Constructor creates a new map - only center and zoom are required.
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(12.973922, 77.569183);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: latlng,
+          zoom: 13
+        });
+      }
+     function putMarkers(){
+     	codeAddress();
+     	codeDestination();
+     	codeMeeting();
+     }
+    function codeAddress() {
+    var address = document.getElementById('startpoint').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  function codeMeeting() {
+    var address = document.getElementById('meetingpoints').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+   function codeDestination() {
+    var address = document.getElementById('endpoint').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+    </script>
+
+<!-- Set Div As your requirement -->
+</div>
+		
+
+</div>
+
+<div class="container" style="margin:20px">
+
+
+</div>
+
+<!----------modal for start here car And register-------------->
+
+<!-- [ Modal #1 ] -->
+  <div class="modal fade" id="modal1" tabindex="-1">
+    <div class="modal-dialog">
+     
+      
+ 
+    
+      <!-- Modal content for My cars-->
+    <div class="modal-content">
+        <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title"> Car Details</h4>
+        </div>
+        <div class="modal-body">
+          
+        <table class="table table-bordered">
+    <thead>
+	<tr>
+		<th>Car ID</th>
+		<th>Plate No</th>
+        <th>Driver No</th>
+    </tr>
+    </thead>
+    <tbody>
+	
+	
+	<tr>
+		<td>288</td>
+        <td>150</td>
+        <td>123</td>
+    </tr>
+	
+	<tr>
+        
+        <td>280</td>
+        <td>159</td>
+        <td>126</td>
+    </tr>
+	<tr>
+		
+			<td>286</td>
+			<td>157</td>
+			<td>125</td>
+        
+    </tr>
+
+</tbody>      
+</table>
+
+
+
+        </div>
+    <div class="modal-footer">
+		<div class="input-group">
+		<input type="text" placeholder="Enter your Car-Id" id="carId">
+		<a href="CreateTrip.html" class="input-group-addon">GO</a></input>
+		</div>
+		
+	</div>
+   </div>
+      
+    </div>
+  </div>
+
+
+<!----------modal for add car-------------->
+
+		  <!-- [ Modal #2 ] -->
+   
+	<div class="modal fade" id="modal2" tabindex="-1">
+		<div class="modal-dialog">
+		<div class="modal-content">
+		<button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+		<div class="modal-header">
+			<h4 class="modal-title">Register car</h4>
+		</div>
+		
+		<div class="modal-body">
+		<div class="form-group">
+			<label for="Car ID">Car ID:</label>
+			<input type="Car ID" class="form-control" id="Car ID" placeholder="Enter your Car ID" name="Car ID">
+		</div>
+		<div class="form-group">
+		  <label for="Plate.No">Plate No.:</label>
+		  <input type="Plate.No" class="form-control" id="Plate.No" placeholder="Enter your Plate Number" name="Plate.No">
+		</div>
+		<div class="form-group">
+		  <label for="Driver ID">Driver ID:</label>
+		  <input type="Driver ID" class="form-control" id="Driver ID" placeholder="Enter your Driver ID" name="Driver ID">
+		</div>
+    
+		<div class="form-group">
+			<label for="Color"> Color: </label>
+			<input type="Color" class="form control" id="Color" placeholder="Choose color" name="color">
+		</div>
+	
+		<div class="form-group">
+			<label for="Preferences"> Preferences: </label>
+		<div class="radio">
+			<label><input type="radio" name="optradio">AC</label>
+			<label><input type="radio" name="optradio">Non-AC</label>
+		</div>
+		</div>
+	
+		<div class="form-group">
+			<label for="Type"> Type: </label>
+				
+				<div class="dropdown">
+					<select class="selectpicker">
+						<option>Sedan</option>
+						<option>SUV</option>
+						<option>Mini</option>
+						<option>Micro</option>
+					</select>
+
+				</div>
+		  
+        </div>
+		
+		
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	
+	
+	<!----------modal for post ride-------------->
+
+		  <!-- [ Modal #3 ] -->
+   
+	<div class="modal fade" id="modal3" tabindex="-1">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+				<div class="modal-header">
+				</div>
+		<div class="modal-body">
+								<h1>Post Ride</h1>
+
+		</div>
+				<div class="modal-footer">
+					<a href="TripDetails.html" class="btn btn-default">Confirm</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</div>
+		</div>
+		</div>
+	</div>
+	</div>
+
+
+
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p> Copyright @ CarpoolNetworkTeam Project <a href="carpoolnet.com" data-toggle="tooltip" title="Visit CarNet">carpoolnet.com</a></p> 
+</footer>
+</body>
+
+
+<script type="text/javascript">
+function enddate(input){
+var validformat=/^\d{4}\/\d{2}\/\d{2}$/ //Basic check for format validity
+var returnval=false
+if (!validformat.test(input.value))
+alert("Invalid Date Format. Please correct and submit again.")
+else{ //Detailed check for valid date ranges
+var yearfield=input.value.split("-")[0]
+var monthfield=input.value.split("-")[1]
+var dayfield=input.value.split("-")[2]
+var dayobj = new Date(yearfield, monthfield-1, dayfield)
+if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
+alert("Invalid Day, Month, or Year range detected. Please correct and submit again.")
+else {
+ alert ('Correct date');
+returnval=true }
+}
+if (returnval==false) input.select()
+return returnval
+}
+ 
+</script>	
+
+<script async defer
+        src=
+        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyCjOCV-6ZOrWQgYCh_hSYsANT2hcDFkZME&v=3&callback=initMap">
+
+    </script>
+</html>
+
+
